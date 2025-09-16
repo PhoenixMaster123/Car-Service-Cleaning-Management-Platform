@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Register</title>
+    <link rel="stylesheet" href="../static/css/register.css"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="background-container"></div>
+
+<div class="form-container">
+    <div class="form-box">
+        <h2>Create Account 🚀</h2>
+        <p class="subtitle">Join us and start your journey!</p>
+
+        <div th:if="${param.success}" class="success-message">
+            <span>Registration successful! Please login.</span>
+        </div>
+        <div th:if="${errorMessage}" class="error-message">
+            <span th:text="${errorMessage}"></span>
+        </div>
+
+        <form th:action="@{/register}" th:object="${user}" method="post" class="main-form">
+            <div class="input-group">
+                <input type="text" id="username" th:field="*{username}" required autocomplete="username">
+                <label for="username">Username</label>
+                <div class="error-container" th:if="${#fields.hasErrors('username')}">
+                    <small class="error-text" th:errors="*{username}"></small>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" th:field="*{email}" required autocomplete="email">
+                <label for="email">Email</label>
+                <div class="error-container" th:if="${#fields.hasErrors('email')}">
+                    <small class="error-text" th:errors="*{email}"></small>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" th:field="*{password}" required autocomplete="new-password">
+                <label for="password">Password</label>
+                <div class="error-container" th:if="${#fields.hasErrors('password')}">
+                    <small class="error-text" th:errors="*{password}"></small>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password">
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+
+            <button type="submit" class="submit-button">Sign Up</button>
+        </form>
+
+        <p class="signin-link">
+            Already have an account? <a th:href="@{/login}">Sign In</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

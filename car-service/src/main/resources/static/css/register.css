@@ -1,0 +1,223 @@
+/* --- Root Variables (Same as before) --- */
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --card-background: rgba(255, 255, 255, 0.95);
+    --font-color: #333;
+    --input-border: #ccc;
+    --input-focus-border: #6a11cb;
+    --button-gradient-start: #2575fc;
+    --button-gradient-end: #6a11cb;
+    --button-hover-start: #6a11cb;
+    --button-hover-end: #2575fc;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-dark: rgba(0, 0, 0, 0.25);
+    --3d-light: rgba(255, 255, 255, 0.6);
+    --3d-dark: rgba(0, 0, 0, 0.1);
+}
+
+/* --- Base Setup --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* --- Animated Gradient Background --- */
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), #f97794, #ffafbd);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Form Box & Container (Generic classes for reuse) --- */
+.form-container {
+    perspective: 1500px;
+}
+
+.form-box {
+    position: relative;
+    background: var(--card-background);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px var(--shadow-color), 0 20px 40px var(--shadow-color-dark), inset 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Slightly wider for more fields */
+    text-align: center;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: floatIn 1.2s ease-out forwards;
+    transform-style: preserve-3d;
+}
+
+.form-box::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, var(--3d-light), var(--3d-dark));
+    border-radius: 25px;
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0.6;
+    transform: translateZ(-20px);
+    animation: floatInPseudo 1.2s ease-out forwards;
+}
+
+@keyframes floatIn {
+    from { opacity: 0; transform: translateY(70px) rotateX(-30deg) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); }
+}
+
+@keyframes floatInPseudo {
+    from { opacity: 0; transform: translateY(70px) rotateX(-30deg) scale(0.9) translateZ(-20px); }
+    to { opacity: 0.6; transform: translateY(0) rotateX(0deg) scale(1) translateZ(-20px); }
+}
+
+/* --- Typography & Headers --- */
+h2 {
+    margin-top: 0;
+    font-weight: 700;
+    color: var(--font-color);
+    font-size: 32px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.subtitle {
+    margin-bottom: 30px;
+    color: #888;
+}
+
+/* --- Form Elements --- */
+.input-group {
+    position: relative;
+    margin-bottom: 25px; /* Adjusted margin */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 2px solid var(--input-border);
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    color: var(--font-color);
+    transition: border-color 0.3s;
+}
+
+.input-group label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 16px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -20px;
+    font-size: 13px;
+    color: var(--input-focus-border);
+    font-weight: 600;
+}
+
+.input-group input:focus {
+    border-bottom-color: var(--input-focus-border);
+}
+
+/* --- Submit Button --- */
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    background-image: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end));
+    background-size: 200% auto;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 10px; /* Added margin-top */
+}
+
+.submit-button:hover {
+    background-position: right center;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+.submit-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Bottom Link --- */
+.signin-link {
+    margin-top: 25px;
+    font-size: 15px;
+    color: #666;
+}
+.signin-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* --- Field-specific Error Messages --- */
+.error-container {
+    text-align: left;
+    margin-top: 5px;
+}
+.error-text {
+    color: var(--error-color);
+    font-size: 13px;
+}
+
+/* --- Global Messages (Error/Success) --- */
+.error-message, .success-message {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    animation: fadeIn 0.5s;
+    text-align: center;
+}
+.error-message {
+    background-color: rgba(231, 76, 60, 0.15);
+    color: var(--error-color);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+.success-message {
+    background-color: rgba(46, 204, 113, 0.15);
+    color: var(--success-color);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

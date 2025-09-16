@@ -1,0 +1,314 @@
+/* --- Root Variables for Easy Theming --- */
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --background-start: #f2f6f8;
+    --background-end: #dce7f0;
+    --card-background: rgba(255, 255, 255, 0.95);
+    --font-color: #333;
+    --input-border: #ccc;
+    --input-focus-border: #6a11cb;
+    --button-gradient-start: #2575fc;
+    --button-gradient-end: #6a11cb;
+    --button-hover-start: #6a11cb;
+    --button-hover-end: #2575fc;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-dark: rgba(0, 0, 0, 0.25); /* Added for deeper shadow */
+    --3d-light: rgba(255, 255, 255, 0.6); /* For a subtle light effect */
+    --3d-dark: rgba(0, 0, 0, 0.1); /* For a subtle dark effect */
+}
+
+/* --- Base Setup --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide scrollbars */
+}
+
+/* --- Animated Gradient Background (No Change) --- */
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), #f97794, #ffafbd);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Login Box & Container (Enhanced for 3D) --- */
+.login-container {
+    perspective: 1500px; /* Increased perspective for more pronounced 3D */
+}
+
+.login-box {
+    position: relative; /* Needed for pseudo-element positioning */
+    background: var(--card-background);
+    padding: 40px 50px;
+    border-radius: 20px; /* Slightly more rounded */
+    /* Multiple shadows for depth, simulating ambient occlusion and direct light */
+    box-shadow: 0 10px 20px var(--shadow-color),
+    0 20px 40px var(--shadow-color-dark),
+    inset 0 0 10px rgba(255, 255, 255, 0.5), /* Inner highlight */
+    inset 0 0 20px rgba(0, 0, 0, 0.1); /* Inner shadow */
+    width: 380px;
+    text-align: center;
+    backdrop-filter: blur(12px); /* Slightly more blur */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Softer border */
+    animation: floatIn 1.2s ease-out forwards; /* Slightly longer animation */
+    transform-style: preserve-3d; /* Important for child 3D effects */
+}
+
+/* Pseudo-element for the 3D edge effect */
+.login-box::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, var(--3d-light), var(--3d-dark));
+    border-radius: 25px; /* Slightly larger radius than the box */
+    z-index: -1; /* Behind the main content */
+    filter: blur(8px); /* Soften the edges */
+    opacity: 0.6;
+    transform: translateZ(-20px); /* Push it back in 3D space */
+    animation: floatInPseudo 1.2s ease-out forwards;
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(70px) rotateX(-30deg) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) scale(1);
+    }
+}
+
+@keyframes floatInPseudo {
+    from {
+        opacity: 0;
+        transform: translateY(70px) rotateX(-30deg) scale(0.9) translateZ(-20px);
+    }
+    to {
+        opacity: 0.6;
+        transform: translateY(0) rotateX(0deg) scale(1) translateZ(-20px);
+    }
+}
+
+
+/* --- Typography & Headers --- */
+h2 {
+    margin-top: 0;
+    font-weight: 700; /* Bolder */
+    color: var(--font-color);
+    font-size: 32px; /* Larger */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle text shadow */
+}
+
+.subtitle {
+    margin-bottom: 35px; /* More space */
+    color: #888;
+}
+
+/* --- Form Elements Styling (Enhanced for 3D) --- */
+.input-group {
+    position: relative;
+    margin-bottom: 40px; /* More space between inputs */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 0; /* More padding */
+    border: none;
+    border-bottom: 2px solid var(--input-border);
+    background: transparent;
+    outline: none;
+    font-size: 17px; /* Slightly larger font */
+    color: var(--font-color);
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Added transform and box-shadow */
+}
+
+.input-group label {
+    position: absolute;
+    top: 12px; /* Adjusted to new padding */
+    left: 0;
+    font-size: 17px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Input focus and valid state animation (with 3D feel) */
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -20px; /* Moves further up */
+    left: 0;
+    font-size: 13px; /* Smaller when elevated */
+    color: var(--input-focus-border);
+    font-weight: 600; /* Bolder when active */
+}
+
+.input-group input:focus {
+    border-bottom-color: var(--input-focus-border);
+    transform: translateY(-2px); /* Slight lift on focus */
+    box-shadow: 0 5px 15px rgba(var(--input-focus-border), 0.2); /* Subtle glow */
+}
+
+
+/* --- Options (Remember Me / Forgot Password) (Minor Adjustments) --- */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px; /* More space */
+    font-size: 15px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #666;
+}
+
+.remember-me input {
+    margin-right: 8px;
+    transform: scale(1.1); /* Slightly larger checkbox */
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.forgot-password:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* --- Login Button (Enhanced for 3D Press Effect) --- */
+.login-button {
+    width: 100%;
+    padding: 15px; /* More padding */
+    border: none;
+    border-radius: 30px; /* More rounded */
+    background-image: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end));
+    background-size: 200% auto;
+    color: white;
+    font-size: 18px; /* Larger font */
+    font-weight: 700; /* Bolder */
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+    position: relative; /* For pseudo-element */
+    z-index: 1; /* Ensure it's above other elements if needed */
+}
+
+.login-button:hover {
+    background-position: right center;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Even deeper shadow on hover */
+    transform: translateY(-3px); /* Lifts up slightly */
+}
+
+.login-button:active {
+    transform: translateY(1px); /* Press down effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Smaller shadow when pressed */
+}
+
+
+/* --- Divider (No Change) --- */
+.divider {
+    margin: 35px 0; /* More space */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #aaa;
+}
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+.divider span {
+    padding: 0 15px;
+}
+
+/* --- Social Login (Minor Adjustments) --- */
+.social-login .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px; /* More padding */
+    border: 1px solid #ddd;
+    border-radius: 30px; /* More rounded */
+    text-decoration: none;
+    color: var(--font-color);
+    font-size: 16px; /* Slightly larger font */
+    transition: all 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+.social-login .social-btn:hover {
+    border-color: #aaa;
+    background-color: #f2f2f2;
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.social-login svg {
+    width: 22px; /* Slightly larger icon */
+    height: 22px;
+    margin-right: 15px; /* More space */
+}
+
+/* --- Signup Link (Minor Adjustments) --- */
+.signup-link {
+    margin-top: 30px; /* More space */
+    font-size: 15px;
+    color: #666;
+}
+.signup-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700; /* Bolder */
+}
+
+/* --- Messages (Error/Success) (No Change) --- */
+.error-message, .success-message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    animation: fadeIn 0.5s;
+}
+.error-message {
+    background-color: rgba(231, 76, 60, 0.15);
+    color: var(--error-color);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+.success-message {
+    background-color: rgba(46, 204, 113, 0.15);
+    color: var(--success-color);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
