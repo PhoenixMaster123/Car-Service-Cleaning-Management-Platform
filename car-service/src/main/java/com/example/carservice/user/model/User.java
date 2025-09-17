@@ -1,5 +1,6 @@
 package com.example.carservice.user.model;
 
+import com.example.carservice.vehicle.model.Vehicle;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -53,4 +55,7 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Vehicle> vehicles;
 }
