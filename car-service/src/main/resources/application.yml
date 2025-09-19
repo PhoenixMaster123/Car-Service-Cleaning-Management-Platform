@@ -1,0 +1,20 @@
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+  info:
+    title: "Car Service REST API"
+    version: "1.0.0"
+    description: |
+      Welcome to the Car Service REST API documentation.
+      Most endpoints can be executed by using the 'Try it out' function.
+      Please be careful with this function on production environments.
+    contact:
+      name: "Your Company Name"
+      url: "https://your-company.com"
+      email: "api-support@your-company.com"
+
+# Make sure you have other configurations like server port, database, etc., here
+server:
+  port: 8080
