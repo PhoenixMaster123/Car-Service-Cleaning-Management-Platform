@@ -1,5 +1,6 @@
 package com.example.carservice.service.model;
 
+import com.example.carservice.booking.model.Booking;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -14,7 +17,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -39,4 +41,7 @@ public class Service {
 
     @Column(nullable = false)
     private Integer estimatedDurationInMinutes;
+
+    @ManyToMany(mappedBy = "services")
+    private Set<Booking> bookings = new HashSet<>();
 }
