@@ -1,6 +1,7 @@
 package com.example.carservice.invoice.model;
 
 import com.example.carservice.booking.model.Booking;
+import com.example.carservice.employee.model.Employee;
 import com.example.carservice.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -48,4 +49,7 @@ public class Invoice {
 
     @OneToOne
     private Booking booking;
+
+    @ManyToOne
+    private Employee issuedBy;
 }

@@ -1,5 +1,6 @@
 package com.example.carservice.booking.model;
 
+import com.example.carservice.employee.model.Employee;
 import com.example.carservice.invoice.model.Invoice;
 import com.example.carservice.service.model.Service;
 import com.example.carservice.user.model.User;
@@ -67,4 +68,7 @@ public class Booking {
             inverseJoinColumns = @JoinColumn(name = "service_id")
     )
     private Set<Service> services = new HashSet<>();
+
+    @ManyToOne
+    private Employee employee;
 }
