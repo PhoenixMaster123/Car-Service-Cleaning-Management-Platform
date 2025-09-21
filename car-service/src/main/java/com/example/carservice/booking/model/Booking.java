@@ -1,5 +1,6 @@
 package com.example.carservice.booking.model;
 
+import com.example.carservice.invoice.model.Invoice;
 import com.example.carservice.service.model.Service;
 import com.example.carservice.user.model.User;
 import com.example.carservice.vehicle.model.Vehicle;
@@ -55,6 +56,9 @@ public class Booking {
 
     @ManyToOne
     private Vehicle vehicle;
+
+    @OneToOne
+    private Invoice invoice;
 
     @ManyToMany
     @JoinTable(
