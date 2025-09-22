@@ -1,6 +1,7 @@
 package com.example.carservice.service.model;
 
 import com.example.carservice.booking.model.Booking;
+import com.example.carservice.feedback.model.Feedback;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,9 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Data
 @Builder
@@ -44,4 +43,7 @@ public class Service {
 
     @ManyToMany(mappedBy = "services")
     private Set<Booking> bookings = new HashSet<>();
+
+    @OneToMany(mappedBy = "service")
+    private List<Feedback> feedbacks = new ArrayList<>();
 }

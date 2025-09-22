@@ -1,6 +1,7 @@
 package com.example.carservice.user.model;
 
 import com.example.carservice.booking.model.Booking;
+import com.example.carservice.feedback.model.Feedback;
 import com.example.carservice.vehicle.model.Vehicle;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -62,4 +63,7 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
     private List<Booking> bookings;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+    private List<Feedback> feedbacks;
 }
