@@ -12,8 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -29,17 +31,17 @@ public class UserService {
     }
 
     public User login(LoginRequest loginRequest) {
-        Optional<User> userOpt = userRepository.findByEmail(loginRequest.email());
+        Optional<User> userOpt = userRepository.findByEmail(loginRequest.getEmail());
 
         if (userOpt.isEmpty()) {
-            log.warn("Login attempt with non-existing email: {}", loginRequest.email());
+            log.warn("Login attempt with non-existing email: {}", loginRequest.getEmail());
             throw new UserEmailDoesNotExistException("Invalid email or password");
         }
 
         User user = userOpt.get();
 
-        if (!passwordEncoder.matches(loginRequest.password(), user.getPassword())) {
-            log.warn("Invalid password attempt for email: {}", loginRequest.email());
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            log.warn("Invalid password attempt for email: {}", loginRequest.getEmail());
             throw new UserPasswordDoesNotMatchException("Invalid email or password");
         }
 
@@ -47,6 +49,7 @@ public class UserService {
         return user;
     }
 
+    @Transactional
     public void register(RegisterRequest registerRequest) {
 
         Optional<User> existingUser = userRepository.findByEmail(registerRequest.getEmail());
@@ -66,5 +69,10 @@ public class UserService {
         userRepository.save(newUser);
 
         log.info("New user registered: {}", newUser.getEmail());
+    }
+
+    public User getById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserEmailDoesNotExistException("User not found with id: " + id));
     }
 }
