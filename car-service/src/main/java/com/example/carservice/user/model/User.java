@@ -38,7 +38,6 @@ public class User {
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Country country;
 
     @Column(nullable = false)
