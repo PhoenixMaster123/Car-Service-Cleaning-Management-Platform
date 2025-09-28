@@ -1,314 +1,185 @@
-/* --- Root Variables for Easy Theming --- */
-:root {
-    --primary-color: #6a11cb;
-    --secondary-color: #2575fc;
-    --background-start: #f2f6f8;
-    --background-end: #dce7f0;
-    --card-background: rgba(255, 255, 255, 0.95);
-    --font-color: #333;
-    --input-border: #ccc;
-    --input-focus-border: #6a11cb;
-    --button-gradient-start: #2575fc;
-    --button-gradient-end: #6a11cb;
-    --button-hover-start: #6a11cb;
-    --button-hover-end: #2575fc;
-    --error-color: #e74c3c;
-    --success-color: #2ecc71;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --shadow-color-dark: rgba(0, 0, 0, 0.25); /* Added for deeper shadow */
-    --3d-light: rgba(255, 255, 255, 0.6); /* For a subtle light effect */
-    --3d-dark: rgba(0, 0, 0, 0.1); /* For a subtle dark effect */
-}
+@import "shared/variables.css";
 
-/* --- Base Setup --- */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Hide scrollbars */
-}
-
-/* --- Animated Gradient Background (No Change) --- */
-.background-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), #f97794, #ffafbd);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-}
-
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* --- Login Box & Container (Enhanced for 3D) --- */
-.login-container {
-    perspective: 1500px; /* Increased perspective for more pronounced 3D */
-}
-
-.login-box {
-    position: relative; /* Needed for pseudo-element positioning */
-    background: var(--card-background);
-    padding: 40px 50px;
-    border-radius: 20px; /* Slightly more rounded */
-    /* Multiple shadows for depth, simulating ambient occlusion and direct light */
-    box-shadow: 0 10px 20px var(--shadow-color),
-    0 20px 40px var(--shadow-color-dark),
-    inset 0 0 10px rgba(255, 255, 255, 0.5), /* Inner highlight */
-    inset 0 0 20px rgba(0, 0, 0, 0.1); /* Inner shadow */
-    width: 380px;
-    text-align: center;
-    backdrop-filter: blur(12px); /* Slightly more blur */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Softer border */
-    animation: floatIn 1.2s ease-out forwards; /* Slightly longer animation */
-    transform-style: preserve-3d; /* Important for child 3D effects */
-}
-
-/* Pseudo-element for the 3D edge effect */
-.login-box::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(135deg, var(--3d-light), var(--3d-dark));
-    border-radius: 25px; /* Slightly larger radius than the box */
-    z-index: -1; /* Behind the main content */
-    filter: blur(8px); /* Soften the edges */
-    opacity: 0.6;
-    transform: translateZ(-20px); /* Push it back in 3D space */
-    animation: floatInPseudo 1.2s ease-out forwards;
-}
-
-@keyframes floatIn {
-    from {
-        opacity: 0;
-        transform: translateY(70px) rotateX(-30deg) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) rotateX(0deg) scale(1);
-    }
-}
-
-@keyframes floatInPseudo {
-    from {
-        opacity: 0;
-        transform: translateY(70px) rotateX(-30deg) scale(0.9) translateZ(-20px);
-    }
-    to {
-        opacity: 0.6;
-        transform: translateY(0) rotateX(0deg) scale(1) translateZ(-20px);
-    }
-}
-
-
-/* --- Typography & Headers --- */
-h2 {
-    margin-top: 0;
-    font-weight: 700; /* Bolder */
-    color: var(--font-color);
-    font-size: 32px; /* Larger */
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle text shadow */
-}
-
-.subtitle {
-    margin-bottom: 35px; /* More space */
-    color: #888;
-}
-
-/* --- Form Elements Styling (Enhanced for 3D) --- */
 .input-group {
-    position: relative;
-    margin-bottom: 40px; /* More space between inputs */
-}
-
-.input-group input {
-    width: 100%;
-    padding: 12px 0; /* More padding */
-    border: none;
-    border-bottom: 2px solid var(--input-border);
-    background: transparent;
-    outline: none;
-    font-size: 17px; /* Slightly larger font */
-    color: var(--font-color);
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Added transform and box-shadow */
+    margin-bottom: 1.5rem;
 }
 
 .input-group label {
-    position: absolute;
-    top: 12px; /* Adjusted to new padding */
-    left: 0;
-    font-size: 17px;
-    color: #999;
-    pointer-events: none;
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 20px 14px 50px;
+    border: 1px solid var(--border-color); /* Thinner border */
+    border-radius: 12px; /* More rounded */
+    font-size: 0.9rem;
     transition: all 0.3s ease;
+    background: var(--input-background); /* Light gray background */
+    color: var(--text-primary);
+}
+/* Remove the default browser border on autofill */
+.input-wrapper input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px var(--input-background) inset !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    border: 1px solid var(--border-color);
 }
 
-/* Input focus and valid state animation (with 3D feel) */
-.input-group input:focus + label,
-.input-group input:valid + label {
-    top: -20px; /* Moves further up */
-    left: 0;
-    font-size: 13px; /* Smaller when elevated */
-    color: var(--input-focus-border);
-    font-weight: 600; /* Bolder when active */
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
 }
 
-.input-group input:focus {
-    border-bottom-color: var(--input-focus-border);
-    transform: translateY(-2px); /* Slight lift on focus */
-    box-shadow: 0 5px 15px rgba(var(--input-focus-border), 0.2); /* Subtle glow */
+.input-icon {
+    position: absolute;
+    left: 18px; /* Adjusted position */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    width: 20px;
+    height: 20px;
 }
 
-
-/* --- Options (Remember Me / Forgot Password) (Minor Adjustments) --- */
-.options {
+/* === Checkbox & Links === */
+.form-options {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px; /* More space */
-    font-size: 15px;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
 }
-
-.remember-me {
+.remember-me, .terms-checkbox {
     display: flex;
     align-items: center;
+    gap: 0.75rem;
+}
+.remember-me input[type="checkbox"], .terms-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color);
+}
+.remember-me label, .terms-checkbox label {
+    color: var(--text-secondary);
     cursor: pointer;
-    color: #666;
 }
-
-.remember-me input {
-    margin-right: 8px;
-    transform: scale(1.1); /* Slightly larger checkbox */
-}
-
-.forgot-password {
+.forgot-password, .terms-checkbox a {
     color: var(--primary-color);
     text-decoration: none;
-    transition: color 0.3s, transform 0.2s;
+    font-weight: 500;
+}
+.forgot-password:hover, .terms-checkbox a:hover {
+    text-decoration: underline;
 }
 
-.forgot-password:hover {
-    color: var(--secondary-color);
-    transform: translateY(-2px); /* Slight lift on hover */
-}
-
-/* --- Login Button (Enhanced for 3D Press Effect) --- */
-.login-button {
+/* === Buttons & Separator === */
+.btn-primary {
     width: 100%;
-    padding: 15px; /* More padding */
-    border: none;
-    border-radius: 30px; /* More rounded */
-    background-image: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end));
-    background-size: 200% auto;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
     color: white;
-    font-size: 18px; /* Larger font */
-    font-weight: 700; /* Bolder */
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow */
-    position: relative; /* For pseudo-element */
-    z-index: 1; /* Ensure it's above other elements if needed */
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
 }
 
-.login-button:hover {
-    background-position: right center;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Even deeper shadow on hover */
-    transform: translateY(-3px); /* Lifts up slightly */
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
 }
 
-.login-button:active {
-    transform: translateY(1px); /* Press down effect */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Smaller shadow when pressed */
-}
-
-
-/* --- Divider (No Change) --- */
-.divider {
-    margin: 35px 0; /* More space */
+.separator {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #9ca3af;
     display: flex;
     align-items: center;
-    text-align: center;
-    color: #aaa;
-}
-.divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #ddd;
-}
-.divider span {
-    padding: 0 15px;
+    gap: 1rem;
 }
 
-/* --- Social Login (Minor Adjustments) --- */
-.social-login .social-btn {
+.separator::before, .separator::after {
+    content: '';
+    height: 1px;
+    background: var(--border-color);
+    flex: 1;
+}
+
+.btn-social {
+    width: 100%;
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px; /* More padding */
-    border: 1px solid #ddd;
-    border-radius: 30px; /* More rounded */
-    text-decoration: none;
-    color: var(--font-color);
-    font-size: 16px; /* Slightly larger font */
-    transition: all 0.3s, transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-.social-login .social-btn:hover {
-    border-color: #aaa;
-    background-color: #f2f2f2;
-    transform: translateY(-2px); /* Slight lift on hover */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-.social-login svg {
-    width: 22px; /* Slightly larger icon */
-    height: 22px;
-    margin-right: 15px; /* More space */
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
 }
 
-/* --- Signup Link (Minor Adjustments) --- */
-.signup-link {
-    margin-top: 30px; /* More space */
-    font-size: 15px;
-    color: #666;
+.btn-social:hover {
+    border-color: var(--primary-color);
+    background: #f0f9ff;
 }
-.signup-link a {
+
+.signup-link, .signin-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.signup-link a, .signin-link a {
     color: var(--primary-color);
     text-decoration: none;
-    font-weight: 700; /* Bolder */
+    font-weight: 600;
 }
 
-/* --- Messages (Error/Success) (No Change) --- */
-.error-message, .success-message {
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    animation: fadeIn 0.5s;
+/* === Responsive Fixes === */
+@media (max-width: 900px) {
+    body {
+        padding: 0;
+    }
+
+    .login-container, .register-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .login-image, .register-image {
+        display: none;
+    }
+
+    .login-form, .register-form {
+        flex: 1;
+        padding: 40px 25px;
+        justify-content: center;
+    }
 }
-.error-message {
-    background-color: rgba(231, 76, 60, 0.15);
-    color: var(--error-color);
-    border: 1px solid rgba(231, 76, 60, 0.3);
-}
-.success-message {
-    background-color: rgba(46, 204, 113, 0.15);
-    color: var(--success-color);
-    border: 1px solid rgba(46, 204, 113, 0.3);
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
 }
