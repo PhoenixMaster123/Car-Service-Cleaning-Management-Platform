@@ -1,5 +1,6 @@
 package com.example.carservice.web.dto;
 
+import com.example.carservice.validation.PasswordsMatch;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,10 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@PasswordsMatch
 public class RegisterRequest {
 
     @NotNull
-    @Email(message = "Email should be valid")
+    @Email(message = "Please provide a valid email address", regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
     private String email;
 
     @NotBlank
@@ -26,4 +28,7 @@ public class RegisterRequest {
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$",
              message = "Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character")
     private String password;
+
+    @NotBlank
+    private String confirmPassword;
 }
