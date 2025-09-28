@@ -51,5 +51,5 @@ public class Invoice {
     private Booking booking;
 
     @ManyToOne
-    private Employee issuedBy;
+    private Employee employee;
 }
