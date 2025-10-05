@@ -6,8 +6,11 @@ import com.example.carservice.common.exception.UserPasswordDoesNotMatchException
 import com.example.carservice.user.model.User;
 import com.example.carservice.user.model.UserRole;
 import com.example.carservice.user.repository.UserRepository;
+import com.example.carservice.web.dto.EditProfileRequest;
+import com.example.carservice.web.dto.EditVehicleRequest;
 import com.example.carservice.web.dto.LoginRequest;
 import com.example.carservice.web.dto.RegisterRequest;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -74,5 +77,20 @@ public class UserService {
     public User getById(UUID id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserEmailDoesNotExistException("User not found with id: " + id));
+    }
+
+    public void updateProfile(UUID id, EditProfileRequest editProfileRequest) {
+        User user = getById(id);
+
+        user.setFirstName(editProfileRequest.getFirstName());
+        user.setLastName(editProfileRequest.getLastName());
+        user.setEmail(editProfileRequest.getEmail());
+        user.setPhoneNumber(editProfileRequest.getPhoneNumber());
+        user.setCountry(editProfileRequest.getCountry());
+        user.setProfilePicture(editProfileRequest.getProfilePicture());
+
+        userRepository.save(user);
+
+        log.info("User profile updated: {}", user.getEmail());
     }
 }
