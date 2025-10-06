@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings | Haris Car Management</title>
+    <link rel="stylesheet" href="../static/css/bookings.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-brand">Haris</span>
+    </div>
+    <ul class="sidebar-nav">
+        <li><a href="#"><span class="material-icons">dashboard</span> Dashboard</a></li>
+        <li><a href="#" class="active"><span class="material-icons">book_online</span> Bookings</a></li>
+        <li><a href="#"><span class="material-icons">edit_note</span> Edit Details</a></li>
+        <li><a href="#"><span class="material-icons">settings</span> Settings</a></li>
+        <li><a href="#"><span class="material-icons">logout</span> Logout</a></li>
+    </ul>
+</aside>
+
+<div class="main-content">
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="menu-toggle" id="menu-toggle">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li class="dropdown"><a href="#">More <span class="material-icons">expand_more</span></a>
+                    <ul class="dropdown-menu"><li><a href="#">Careers</a></li><li><a href="#">About Us</a></li></ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-container">
+        <header class="page-header">
+            <h1>My Bookings</h1>
+            <p>Review and manage all your service appointments.</p>
+        </header>
+
+        <div class="page-controls">
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="status-filter">Status</label>
+                    <select id="status-filter">
+                        <option value="all">All</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="vehicle-filter">Vehicle</label>
+                    <select id="vehicle-filter">
+                        <option value="all">All Vehicles</option>
+                        <option value="WÜ-AS 2025">VW Golf VIII</option>
+                        <option value="WÜ-X 123">Audi A4</option>
+                        <option value="WÜ-E 456">BMW i3</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary"><span class="material-icons">add</span> Book a New Service</button>
+        </div>
+
+        <div class="booking-list-container">
+            <div class="booking-card" data-status="upcoming" data-vehicle="WÜ-AS 2025">
+                <div class="booking-card-header">
+                    <div class="vehicle-details">
+                        <span class="vehicle-name">VW Golf VIII</span>
+                        <span class="vehicle-plate">WÜ-AS 2025</span>
+                    </div>
+                    <span class="status-badge status-upcoming">Upcoming</span>
+                </div>
+                <div class="booking-card-body">
+                    <h3 class="service-title">Annual Service & Oil Change</h3>
+                    <div class="service-time">
+                        <span class="material-icons">event</span>
+                        <span>October 15, 2025 at 09:00 AM</span>
+                    </div>
+                </div>
+                <div class="booking-card-footer">
+                    <button class="btn btn-secondary">Reschedule</button>
+                    <button class="btn-icon" title="View Details"><span class="material-icons">more_vert</span></button>
+                </div>
+            </div>
+
+            <div class="booking-card" data-status="completed" data-vehicle="WÜ-X 123">
+                <div class="booking-card-header">
+                    <div class="vehicle-details">
+                        <span class="vehicle-name">Audi A4</span>
+                        <span class="vehicle-plate">WÜ-X 123</span>
+                    </div>
+                    <span class="status-badge status-completed">Completed</span>
+                </div>
+                <div class="booking-card-body">
+                    <h3 class="service-title">Tire Change (Summer to Winter)</h3>
+                    <div class="service-time">
+                        <span class="material-icons">event</span>
+                        <span>September 1, 2025 at 02:30 PM</span>
+                    </div>
+                </div>
+                <div class="booking-card-footer">
+                    <button class="btn btn-secondary">View Invoice</button>
+                    <button class="btn-icon" title="View Details"><span class="material-icons">more_vert</span></button>
+                </div>
+            </div>
+
+            <div class="booking-card" data-status="cancelled" data-vehicle="WÜ-AS 2025">
+                <div class="booking-card-header">
+                    <div class="vehicle-details">
+                        <span class="vehicle-name">VW Golf VIII</span>
+                        <span class="vehicle-plate">WÜ-AS 2025</span>
+                    </div>
+                    <span class="status-badge status-cancelled">Cancelled</span>
+                </div>
+                <div class="booking-card-body">
+                    <h3 class="service-title">Brake Inspection</h3>
+                    <div class="service-time">
+                        <span class="material-icons">event</span>
+                        <span>September 20, 2025 at 11:00 AM</span>
+                    </div>
+                </div>
+                <div class="booking-card-footer">
+                    <button class="btn btn-secondary">Book Again</button>
+                    <button class="btn-icon" title="View Details"><span class="material-icons">more_vert</span></button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

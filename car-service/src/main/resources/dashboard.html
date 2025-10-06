@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Haris Car Management</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+<!--    NOTE: correct the nav bar from the edit-details.html-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-brand">Haris</span>
+    </div>
+    <ul class="sidebar-nav">
+        <li><a href="#" class="active"><span class="material-icons">dashboard</span> Dashboard</a></li>
+        <li><a href="#"><span class="material-icons">book_online</span> Bookings</a></li>
+        <li><a href="#"><span class="material-icons">edit_note</span> Edit Details</a></li>
+        <li><a href="#"><span class="material-icons">settings</span> Settings</a></li>
+        <li><a href="#"><span class="material-icons">logout</span> Logout</a></li>
+    </ul>
+</aside>
+
+<div class="main-content">
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="menu-toggle" id="menu-toggle">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Book Now</a></li>
+                <li class="dropdown">
+                    <a href="#">More <span class="material-icons">expand_more</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Location</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-container">
+        <header class="page-header">
+            <h1>Welcome back, Alex!</h1>
+            <p>Here's what's happening with your vehicles today, October 6, 2025.</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card stat-card">
+                <div class="stat-card-icon" style="background-color: #e0f7fa;"><span class="material-icons" style="color: #00796b;">directions_car</span></div>
+                <div class="stat-card-info">
+                    <span class="stat-card-title">Total Vehicles</span>
+                    <span class="stat-card-value">3</span>
+                </div>
+            </div>
+
+            <div class="dashboard-card stat-card">
+                <div class="stat-card-icon" style="background-color: #fff3e0;"><span class="material-icons" style="color: #f57c00;">event</span></div>
+                <div class="stat-card-info">
+                    <span class="stat-card-title">Upcoming Bookings</span>
+                    <span class="stat-card-value">1</span>
+                </div>
+            </div>
+
+            <div class="dashboard-card stat-card">
+                <div class="stat-card-icon" style="background-color: #ffebee;"><span class="material-icons" style="color: #d32f2f;">notification_important</span></div>
+                <div class="stat-card-info">
+                    <span class="stat-card-title">Service Reminders</span>
+                    <span class="stat-card-value">2</span>
+                </div>
+            </div>
+
+            <div class="dashboard-card list-card" id="my-vehicles">
+                <div class="card-header">
+                    <h3>My Vehicles</h3>
+                    <a href="#" class="view-all-link">View All</a>
+                </div>
+                <ul class="vehicle-list">
+                    <li class="vehicle-item">
+                        <img src="https://i.imgur.com/gL8sV2W.png" alt="VW Golf"> <div class="vehicle-info">
+                        <span class="vehicle-name">VW Golf VIII</span>
+                        <span class="vehicle-plate">WÜ-AS 2025</span>
+                    </div>
+                        <button class="btn-icon"><span class="material-icons">more_horiz</span></button>
+                    </li>
+                    <li class="vehicle-item">
+                        <img src="https://i.imgur.com/JmwB22u.png" alt="Audi A4"> <div class="vehicle-info">
+                        <span class="vehicle-name">Audi A4</span>
+                        <span class="vehicle-plate">WÜ-X 123</span>
+                    </div>
+                        <button class="btn-icon"><span class="material-icons">more_horiz</span></button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-card list-card" id="upcoming-bookings">
+                <div class="card-header">
+                    <h3>Upcoming Bookings</h3>
+                    <a href="#" class="view-all-link">View All</a>
+                </div>
+                <ul class="booking-list">
+                    <li class="booking-item">
+                        <div class="booking-date">
+                            <span>OCT</span>
+                            <span>15</span>
+                        </div>
+                        <div class="booking-info">
+                            <span class="booking-title">Annual Service & Oil Change</span>
+                            <span class="booking-details">VW Golf VIII • 09:00 AM</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-card" id="quick-actions">
+                <h3>Quick Actions</h3>
+                <div class="action-buttons">
+                    <button class="btn btn-primary"><span class="material-icons">book_online</span> Book a Service</button>
+                    <button class="btn btn-secondary"><span class="material-icons">add_circle</span> Add a Vehicle</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

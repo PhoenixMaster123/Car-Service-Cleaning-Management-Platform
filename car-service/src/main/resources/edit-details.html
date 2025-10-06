@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Details | Haris Car Management</title>
+    <link rel="stylesheet" href="../static/css/edit-details.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-brand">Haris</span>
+    </div>
+    <ul class="sidebar-nav">
+        <li><a href="#"><span class="material-icons">dashboard</span> Dashboard</a></li>
+        <li><a href="#"><span class="material-icons">book_online</span> Bookings</a></li>
+        <li><a href="#" class="active"><span class="material-icons">edit_note</span> Edit Details</a></li>
+        <li><a href="#"><span class="material-icons">settings</span> Settings</a></li>
+        <li><a href="#"><span class="material-icons">logout</span> Logout</a></li>
+    </ul>
+</aside>
+
+<div class="main-content">
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="menu-toggle" id="menu-toggle">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Book Now</a></li>
+                <li class="dropdown">
+                    <a href="#">More <span class="material-icons">expand_more</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Location</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-container">
+        <header class="page-header">
+            <h1>Manage Your Profile</h1>
+            <p>Keep your personal and vehicle information up-to-date.</p>
+        </header>
+
+        <form class="details-form">
+            <section class="form-section user-section">
+                <h2>User Details</h2>
+                <div class="form-group profile-picture-section">
+                    <div class="profile-picture-container">
+                        <img src="https://i.pravatar.cc/150?u=alexschmidt" alt="Current profile picture" class="profile-picture-preview">
+                        <label for="profilePicture" class="profile-picture-overlay"><span class="material-icons">photo_camera</span><span>Change</span></label>
+                        <input type="file" id="profilePicture" name="profilePicture" class="profile-picture-input" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group floating-label"><input type="text" id="firstName" name="firstName" placeholder=" " value="Alex"><label for="firstName">First Name</label></div>
+                    <div class="form-group floating-label"><input type="text" id="lastName" name="lastName" placeholder=" " value="Schmidt"><label for="lastName">Last Name</label></div>
+                    <div class="form-group floating-label"><input type="email" id="email" name="email" placeholder=" " value="alex.s@example.com" disabled><label for="email">Email Address</label></div>
+                    <div class="form-group floating-label"><input type="tel" id="phone" name="phone" placeholder=" " value="+49 176 12345678"><label for="phone">Phone Number</label></div>
+                    <div class="form-group full-width"><label for="country" class="static-label">Country</label><select id="country" name="country"><option value="DE" selected>Germany</option><option value="US">United States</option></select></div>
+                </div>
+            </section>
+            <section class="form-section vehicle-section">
+                <h2>Vehicle Garage</h2>
+                <div class="vehicle-selector-header">
+                    <div class="form-group"><label for="vehicleSelector" class="static-label">Select Vehicle</label><select id="vehicleSelector" name="vehicleSelector"><option value="vehicle1">VW Golf VIII (WÜ-AS 2025)</option><option value="vehicle2">Audi A4 (WÜ-X 123)</option></select></div>
+                    <button type="button" class="btn btn-add-new"><span class="material-icons">add_circle</span> Add New</button>
+                </div>
+                <div class="form-grid" id="vehicle-form-fields">
+                    <div class="form-group floating-label"><input type="text" id="vehicleMake" name="vehicleMake" placeholder=" "><label for="vehicleMake">Make</label></div>
+                    <div class="form-group floating-label"><input type="text" id="vehicleModel" name="vehicleModel" placeholder=" "><label for="vehicleModel">Model</label></div>
+                    <div class="form-group floating-label"><input type="number" id="vehicleYear" name="vehicleYear" min="1900" max="2026" placeholder=" "><label for="vehicleYear">Year</label></div>
+                    <div class="form-group floating-label"><input type="text" id="licensePlate" name="licensePlate" placeholder=" "><label for="licensePlate">License Plate</label></div>
+                    <div class="form-group full-width floating-label"><input type="text" id="vin" name="vin" placeholder=" " disabled><label for="vin">VIN</label></div>
+                </div>
+            </section>
+            <div class="form-actions"><button type="button" class="btn btn-secondary">Cancel</button><button type="submit" class="btn btn-primary">Save All Changes</button></div>
+        </form>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
