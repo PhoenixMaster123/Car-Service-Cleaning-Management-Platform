@@ -1,0 +1,99 @@
+/* --- Global Styles & Fancy Variables --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root { /* Variables are unchanged */ }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', sans-serif; color: #212529; background: #f3f4f6; line-height: 1.6; overflow-x: hidden; }
+
+/* --- Sidebar & Navbar (Unchanged from previous response) --- */
+.sidebar { position: fixed; left: 0; top: 0; height: 100%; width: 260px; background: #192231; color: #fff; padding: 20px; transition: transform 0.3s ease-in-out; z-index: 1000; }
+.sidebar-header { text-align: center; margin-bottom: 30px; }
+.sidebar-brand { font-size: 2em; font-weight: 700; background: linear-gradient(45deg, #005bea, #00c6fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.sidebar-nav { list-style: none; }
+.sidebar-nav a { display: flex; align-items: center; gap: 15px; color: #aeb1b8; text-decoration: none; padding: 15px; border-radius: 8px; margin-bottom: 5px; transition: all 0.2s ease; }
+.sidebar-nav a:hover { background-color: rgba(255, 255, 255, 0.05); color: #fff; }
+.sidebar-nav a.active { background: linear-gradient(90deg, #005bea, #00c6fb); color: #fff; box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3); }
+.main-content { margin-left: 260px; transition: margin-left 0.3s ease-in-out; width: calc(100% - 260px); }
+.navbar { height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid #d9dee3; position: sticky; top: 0; z-index: 999; }
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; color: #212529; }
+.nav-links { display: flex; align-items: center; list-style: none; gap: 25px; }
+.nav-links a { text-decoration: none; color: #697a89; font-weight: 600; display: flex; align-items: center; transition: color 0.2s; }
+
+/* --- Page Content --- */
+.page-container { max-width: 1400px; margin: 0 auto; padding: 40px; }
+.page-header h1 { color: #192231; }
+.page-header p { color: #697a89; font-size: 1.1em; }
+
+/* --- NEW: Dashboard Grid Layout --- */
+@keyframes slide-fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+.dashboard-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    animation: slide-fade-in 0.5s ease-out forwards;
+}
+/* Staggered animation delays */
+.dashboard-card:nth-child(1) { animation-delay: 0.1s; }
+.dashboard-card:nth-child(2) { animation-delay: 0.2s; }
+.dashboard-card:nth-child(3) { animation-delay: 0.3s; }
+.dashboard-card:nth-child(4) { animation-delay: 0.4s; }
+.dashboard-card:nth-child(5) { animation-delay: 0.5s; }
+.dashboard-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* --- NEW: Stat Card Styling --- */
+.stat-card { display: flex; align-items: center; gap: 20px; }
+.stat-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stat-card-icon .material-icons { font-size: 32px; }
+.stat-card-info { display: flex; flex-direction: column; }
+.stat-card-title { color: #697a89; font-size: 0.9em; }
+.stat-card-value { font-size: 2em; font-weight: 700; color: #192231; }
+
+/* --- NEW: List Card Styling (Vehicles & Bookings) --- */
+.list-card .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eef2f7; }
+.list-card h3 { font-size: 1.2em; color: #192231; }
+.list-card .view-all-link { color: #005bea; text-decoration: none; font-weight: 600; font-size: 0.9em; }
+.vehicle-list, .booking-list { list-style: none; }
+.vehicle-item, .booking-item { display: flex; align-items: center; gap: 15px; padding: 10px 0; }
+.vehicle-item img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+.vehicle-info, .booking-info { display: flex; flex-direction: column; flex-grow: 1; }
+.vehicle-name, .booking-title { font-weight: 600; color: #192231; }
+.vehicle-plate, .booking-details { font-size: 0.9em; color: #697a89; }
+.btn-icon { background: none; border: none; cursor: pointer; color: #697a89; }
+.booking-date { text-align: center; background: #eef2f7; padding: 8px; border-radius: 8px; line-height: 1.1; }
+.booking-date span:first-child { font-size: 0.8em; font-weight: 600; color: #697a89; }
+.booking-date span:last-child { font-size: 1.4em; font-weight: 700; color: #192231; }
+
+/* --- NEW: Quick Actions Card --- */
+#quick-actions h3 { font-size: 1.2em; margin-bottom: 20px; }
+.action-buttons { display: grid; grid-template-columns: 1fr; gap: 15px; }
+.btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 14px 25px; border: none; border-radius: 8px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+.btn-primary { background: linear-gradient(45deg, #005bea, #00c6fb); color: white; box-shadow: 0 4px 15px rgba(0, 150, 255, 0.3); }
+.btn-secondary { background: #f3f4f6; color: #192231; }
+.btn:hover { transform: translateY(-3px); }
+
+
+
+
+/* --- Responsive Design (Adjustments) --- */
+@media (max-width: 1024px) {
+    body { --sidebar-width: 0; }
+    .sidebar { transform: translateX(-100%); }
+    body.sidebar-active .sidebar { transform: translateX(0); }
+    .main-content { width: 100%; margin-left: 0; }
+    .menu-toggle { display: block; }
+    .nav-links { display: none; }
+}
