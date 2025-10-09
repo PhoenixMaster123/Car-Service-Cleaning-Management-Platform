@@ -2,6 +2,7 @@ package com.example.carservice.web.controller;
 
 import com.example.carservice.user.model.User;
 import com.example.carservice.user.service.UserService;
+import com.example.carservice.web.dto.EditPasswordRequest;
 import com.example.carservice.web.dto.EditProfileRequest;
 import com.example.carservice.web.mapper.DtoMapper;
 import jakarta.servlet.http.HttpSession;
@@ -94,5 +95,32 @@ public class UserController {
         modelAndView.addObject("user", user);
 
         return modelAndView;
+    }
+
+    @GetMapping("{id}/change-password")
+    public ModelAndView showContactPage(@PathVariable UUID id) {
+
+        User user = userService.getById(id);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/account/change-password");
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("editPasswordRequest", new EditPasswordRequest());
+
+        return modelAndView;
+    }
+
+    @PutMapping("{id}/change-password")
+    public ModelAndView changePassword(@PathVariable UUID id, @Valid EditPasswordRequest editPasswordRequest, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("/account/change-password");
+            modelAndView.addObject("user", userService.getById(id));
+            return modelAndView;
+        }
+
+        userService.updatePassword(id, editPasswordRequest);
+
+        return new ModelAndView("redirect:/home");
     }
 }

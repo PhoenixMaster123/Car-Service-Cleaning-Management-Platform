@@ -6,10 +6,7 @@ import com.example.carservice.common.exception.UserPasswordDoesNotMatchException
 import com.example.carservice.user.model.User;
 import com.example.carservice.user.model.UserRole;
 import com.example.carservice.user.repository.UserRepository;
-import com.example.carservice.web.dto.EditProfileRequest;
-import com.example.carservice.web.dto.EditVehicleRequest;
-import com.example.carservice.web.dto.LoginRequest;
-import com.example.carservice.web.dto.RegisterRequest;
+import com.example.carservice.web.dto.*;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +89,26 @@ public class UserService {
         userRepository.save(user);
 
         log.info("User profile updated: {}", user.getEmail());
+    }
+
+    public void updatePassword(UUID id, EditPasswordRequest editPasswordRequest) {
+        User user = getById(id);
+        String storedPassword = user.getPassword();
+
+        // CHECK 1: Verify the provided current password matches the one in the database.
+        if (!passwordEncoder.matches(editPasswordRequest.getCurrentPassword(), storedPassword)) {
+            throw new UserPasswordDoesNotMatchException("Invalid current password");
+        }
+
+        // CHECK 2: Verify the new password is not the same as the old one.
+        if (passwordEncoder.matches(editPasswordRequest.getNewPassword(), storedPassword)) {
+            throw new UserPasswordDoesNotMatchException("New password cannot be the same as the current password");
+        }
+
+        // All checks passed, now encode the new password and save.
+        user.setPassword(passwordEncoder.encode(editPasswordRequest.getNewPassword()));
+        userRepository.save(user);
+
+        log.info("User password updated: {}", user.getEmail());
     }
 }
