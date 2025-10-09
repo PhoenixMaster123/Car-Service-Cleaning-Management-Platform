@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<aside class="sidebar" th:fragment="aside-account">
+    <div class="sidebar-header">
+        <span class="sidebar-brand">Haris</span>
+    </div>
+    <ul class="sidebar-nav">
+        <li><a th:href="@{/users/dashboard}"><span class="material-icons">dashboard</span> Dashboard</a></li>
+        <li><a th:href="@{/users/bookings}"><span class="material-icons">book_online</span> Bookings</a></li>
+        <li><a th:href="@{'/users/' + ${user.id} + '/edit-details'}"><span class="material-icons">edit_note</span> Edit Details</a></li>
+        <li><a th:href="@{'/users/' + ${user.id} + '/change-password'}"><span class="material-icons">vpn_key</span> Edit Password</a></li>
+        <li><a th:href="@{/users/settings}"><span class="material-icons">settings</span> Settings</a></li>
+        <li><a th:href="@{/logout}"><span class="material-icons">logout</span> Logout</a></li>
+    </ul>
+</aside>
+</body>
+</html>

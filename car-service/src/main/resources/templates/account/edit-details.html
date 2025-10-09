@@ -5,48 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Details | Haris Car Management</title>
     <link rel="stylesheet" href="/css/account/edit-details.css">
+    <link rel="stylesheet" href="/css/component/navbar-account.css">
+    <link rel="stylesheet" href="/css/component/aside-account.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 
-<aside class="sidebar">
-    <div class="sidebar-header">
-        <span class="sidebar-brand">Haris</span>
-    </div>
-    <ul class="sidebar-nav">
-        <li><a th:href="@{/users/dashboard}"><span class="material-icons">dashboard</span> Dashboard</a></li>
-        <li><a th:href="@{/users/bookings}"><span class="material-icons">book_online</span> Bookings</a></li>
-        <li><a th:href="@{'/users/' + ${user.id} + '/edit-details'}" class="active"><span class="material-icons">edit_note</span> Edit Details</a></li>
-        <li><a th:href="@{/users/settings}"><span class="material-icons">settings</span> Settings</a></li>
-        <li><a th:href="@{/logout}"><span class="material-icons">logout</span> Logout</a></li>
-    </ul>
-</aside>
+<th:block th:replace="~{fragments/common/aside-account :: aside-account}"></th:block>
 
 <div class="main-content">
-    <nav class="navbar">
-        <div class="nav-left">
-            <button class="menu-toggle" id="menu-toggle">
-                <span class="material-icons">menu</span>
-            </button>
-        </div>
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="/home">Home</a></li>
-                <li><a href="/services">Services & Pricing</a></li>
-                <li class="dropdown">
-                    <a href="#">More <span class="material-icons">expand_more</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/locations">Location</a></li>
-                        <li><a href="/careers">Careers</a></li>
-                        <li><a href="/news">News</a></li>
-                    </ul>
-                </li>
-                <li><a th:href="@{/booking}">Book Now</a></li>
-            </ul>
-        </div>
-    </nav>
+    <th:block th:replace="~{fragments/common/navbar-account :: navbar-account}"></th:block>
 
     <main class="page-container">
         <header class="page-header">

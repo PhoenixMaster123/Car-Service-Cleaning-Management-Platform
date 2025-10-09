@@ -80,98 +80,50 @@ input:disabled { background-color: var(--disabled-bg); cursor: not-allowed; colo
 .btn-secondary:hover { background-color: #5a6268; }
 
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: var(--sidebar-width);
-    background: var(--sidebar-bg);
-    color: #fff;
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
-    z-index: 1000;
-}
-.sidebar-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-.sidebar-brand {
-    font-size: 2em;
-    font-weight: 700;
-    background: linear-gradient(45deg, var(--primary-grad-start), var(--primary-grad-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.sidebar-nav { list-style: none; }
-.sidebar-nav a {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: #aeb1b8;
-    text-decoration: none;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 5px;
-    transition: all 0.2s ease;
-}
-.sidebar-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #fff;
-}
-.sidebar-nav a.active {
-    background: linear-gradient(90deg, var(--primary-grad-start), var(--primary-grad-end));
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);
-}
-
-/* --- NEW: Main Content & Top Navbar --- */
-.main-content {
-    margin-left: var(--sidebar-width);
-    transition: margin-left 0.3s ease-in-out;
-    width: calc(100% - var(--sidebar-width));
-}
-.navbar {
-    height: var(--navbar-height);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-.menu-toggle {
-    display: none; /* Hidden on desktop */
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-color);
-}
-.nav-links { display: flex; align-items: center; list-style: none; gap: 25px; }
-.nav-links a { text-decoration: none; color: var(--label-color); font-weight: 600; display: flex; align-items: center; transition: color 0.2s; }
-.nav-links a:hover { color: var(--primary-grad-start); }
-.dropdown { position: relative; }
-.dropdown-menu {
-    position: absolute;
-    top: 150%;
-    right: 0;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    list-style: none;
-    padding: 10px 0;
-    width: 160px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-}
-.dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-.dropdown-menu a { padding: 10px 20px; width: 100%; }
+/*.sidebar {*/
+/*    position: fixed;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    height: 100%;*/
+/*    width: var(--sidebar-width);*/
+/*    background: var(--sidebar-bg);*/
+/*    color: #fff;*/
+/*    padding: 20px;*/
+/*    transition: transform 0.3s ease-in-out;*/
+/*    z-index: 1000;*/
+/*}*/
+/*.sidebar-header {*/
+/*    text-align: center;*/
+/*    margin-bottom: 30px;*/
+/*}*/
+/*.sidebar-brand {*/
+/*    font-size: 2em;*/
+/*    font-weight: 700;*/
+/*    background: linear-gradient(45deg, var(--primary-grad-start), var(--primary-grad-end));*/
+/*    -webkit-background-clip: text;*/
+/*    -webkit-text-fill-color: transparent;*/
+/*}*/
+/*.sidebar-nav { list-style: none; }*/
+/*.sidebar-nav a {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    gap: 15px;*/
+/*    color: #aeb1b8;*/
+/*    text-decoration: none;*/
+/*    padding: 15px;*/
+/*    border-radius: 8px;*/
+/*    margin-bottom: 5px;*/
+/*    transition: all 0.2s ease;*/
+/*}*/
+/*.sidebar-nav a:hover {*/
+/*    background-color: rgba(255, 255, 255, 0.05);*/
+/*    color: #fff;*/
+/*}*/
+/*.sidebar-nav a.active {*/
+/*    background: linear-gradient(90deg, var(--primary-grad-start), var(--primary-grad-end));*/
+/*    color: #fff;*/
+/*    box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);*/
+/*}*/
 
 /* --- Page Content (Existing Styles Adjusted) --- */
 .page-container { max-width: 1100px; margin: 0 auto; padding: 40px; }
