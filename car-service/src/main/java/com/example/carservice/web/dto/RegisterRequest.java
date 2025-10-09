@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@PasswordsMatch
+@PasswordsMatch(first = "password", second = "confirmPassword", message = "Passwords do not match")
 public class RegisterRequest {
 
     @NotNull
